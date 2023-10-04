@@ -1,0 +1,39 @@
+.commentContainer {
+    border: 1px solid black;
+    margin: 50px 0;
+    width: 81vw;
+    background-color: aqua;
+}
+
+.commentInfoContainer {
+    border: 1px solid black;
+    display: flex;
+}
+
+.icon {
+    border: 1px solid black;
+}
+
+.commentInfo {
+    border: 1px solid black;
+    display: flex;
+}
+
+.commentInfo p {
+    margin-right: 20px;
+}
+
+.social {
+    border: 1px solid black;
+}
+
+.social ul {
+    border: 1px solid black;
+    display: flex;
+    list-style: none;
+}
+
+.social li {
+    border: 1px solid black;
+    margin-right: 20px;
+}

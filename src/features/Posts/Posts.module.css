@@ -1,0 +1,59 @@
+.postContainer {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    background-color: aquamarine;
+}
+
+.postInfoContainer {
+    border: 1px solid black;
+    display: flex;
+}
+
+.icon {
+    border: 1px solid black;
+    margin: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.postInfo {
+    border: 1px solid black;
+}
+
+.postInfo ul {
+    display: flex;
+    list-style: none;
+}
+
+.postInfo li {
+    margin-right: 20px;
+}
+
+.image {
+    border: 1px solid black;
+    align-self: center;
+    height: 100px;
+    width: 90%;
+}
+
+.social {
+    border: 1px solid black;
+}
+
+.social ul {
+    border: 1px solid black;
+    display: flex;
+    list-style: none;
+}
+
+.social li {
+    border: 1px solid black;
+    margin-right: 20px;
+}
+
+.comments {
+    align-self: center;
+}

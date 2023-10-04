@@ -1,0 +1,22 @@
+.container {
+    border: 1px solid black;
+    display: flex;
+    width: 200px;
+    height: 50px;
+}
+
+.icon {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+}
+
+.input {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+}
