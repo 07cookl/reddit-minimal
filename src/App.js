@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import HomePage from "./features/HomePage/HomePage";
 import { SearchResults } from './features/SearchResults/SearchResults';
 import AppLayout from './AppLayout';
+import { useState } from 'react';
+import { getPopularPost } from './api/reddit';
 
 function App() {
   return (
