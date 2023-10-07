@@ -32,11 +32,31 @@
     margin-right: 20px;
 }
 
-.image {
+.content {
     border: 1px solid black;
     align-self: center;
-    height: 100px;
+    max-height: 350px;
     width: 90%;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.contentVideo {
+    border: 1px solid black;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    max-height: 350px;
+    max-width: 350px;
+}
+
+.postImage {
+    height: 300px;
+}
+
+.postText {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .social {

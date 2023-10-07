@@ -1,8 +1,31 @@
 import React from "react";
 import styles from "./Posts.module.css";
 import Comments from "../Comments/Comments";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function Posts(props) {
+
+    const postContent = (post) => {
+        let category = post.post_hint;
+        switch (category) {
+            case 'self':
+                return <Markdown remarkPlugins={[remarkGfm]} className={styles.postText}>{post.selftext}</Markdown>;
+            case 'link':
+                return <a href={post.url}>Click for more</a>;
+            case 'image':
+                return <img src={post.url} className={styles.postImage} alt={post.title}/>
+            case 'hosted:video':
+                return (<video controls height="350">
+                    <source src={props.post.media.reddit_video.scrubber_media_url}/>
+                </video>);
+            case undefined:
+                return <a href={post.url}>Click for more</a>;
+            default:
+                <p>Unable to load post.</p>;
+        }
+    }
+
     return (
     <div className={styles.postContainer}>
         <div className={styles.postInfoContainer}>
@@ -22,8 +45,8 @@ export default function Posts(props) {
             </div>
         </div>
         <h2>{props.post.title}</h2>
-        <div className={styles.image}>
-            <p>{props.post.selftext}</p>
+        <div className={styles.content}>
+            {postContent(props.post)}
         </div>
         <div className={styles.social}>
             <ul>

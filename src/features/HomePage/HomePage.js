@@ -11,8 +11,6 @@ export default function HomePage() {
         getPopularPost().then(setPosts);
     }, []);
 
-    console.log(posts);
-
     return (
     <div className={styles.homeContainer}>
         <p>This will be the home page.</p>
@@ -20,7 +18,7 @@ export default function HomePage() {
             {posts.map((post) => (
             <Posts 
                 post={post}
-                id={posts.id}/>
+                key={post.id}/>
             ))}
         </div>
     </div>
