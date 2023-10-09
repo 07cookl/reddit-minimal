@@ -51,10 +51,10 @@ export default function Posts(props) {
         <div className={styles.social}>
             <ul>
                 <li>
-                    <p>{props.post.score}</p>
+                    <p>Score: {props.post.score}</p>
                 </li>
                 <li>
-                    <p>{props.post.num_comments}</p>
+                    <p>{props.post.num_comments} comments</p>
                 </li>
                 <li>
                     <p>Share</p>

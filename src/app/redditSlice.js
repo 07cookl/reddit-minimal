@@ -1,13 +1,18 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { searchForPosts, searchPreview } from '../api/reddit';
+import { searchForPosts, searchPreview, subredditInfo } from '../api/reddit';
 
 const initialState = {
     posts: [],
     previews: [],
+    subredditData: {},
     error: false,
     isLoading: false,
+    errorPreview: false,
+    isLoadingPreview: false,
+    errorSubredditData: false,
+    isLoadingSubredditData: false,
     searchTerm: '',
-    selectedSubreddit: '/r/popular/',
+    selectedSubreddit: 'r/popular'
 };
 
 const redditSlice = createSlice({
@@ -40,16 +45,31 @@ const redditSlice = createSlice({
             state.previews = action.payload;
         },
         startGetPreviews(state) {
-            state.isLoading = true;
-            state.error = false;
+            state.isLoadingPreview = true;
+            state.errorPreview = false;
         },
         getPreviewsSuccess(state, action) {
-            state.isLoading = false;
+            state.isLoadingPreview = false;
             state.previews = action.payload;
         },
         getPreviewsFailed(state) {
-            state.isLoading = false;
-            state.error = true;
+            state.isLoadingPreview = false;
+            state.errorPreview = true;
+        },
+        setSubredditData(state, action) {
+            state.subredditData = action.payload;
+        },
+        startGetSubredditData(state) {
+            state.isLoadingSubredditData = true;
+            state.errorSubredditData = false;
+        },
+        getSubredditDataSuccess(state, action) {
+            state.isLoadingSubredditData = false;
+            state.subredditData = action.payload;
+        },
+        getSubredditDataFailed(state) {
+            state.isLoadingSubredditData = false;
+            state.errorSubredditData = true;
         }
     }
 });
@@ -64,7 +84,11 @@ export const {
     setPreviews,
     startGetPreviews,
     getPreviewsSuccess,
-    getPreviewsFailed
+    getPreviewsFailed,
+    setSubredditData,
+    startGetSubredditData,
+    getSubredditDataSuccess,
+    getSubredditDataFailed
 } = redditSlice.actions;
 
 export default redditSlice.reducer;
@@ -89,7 +113,18 @@ export const fetchPreviews = (term) => async (dispatch) => {
     } catch (error) {
         dispatch(getPreviewsFailed);
     }
-}
+};
+
+export const fetchSubredditData = (subreddit) => async (dispatch) => {
+    try {
+        dispatch(startGetSubredditData());
+        const subredditData = await subredditInfo(subreddit);
+
+        dispatch(getSubredditDataSuccess(subredditData));
+    } catch (error) {
+        dispatch(getSubredditDataFailed);
+    }
+};
 
 export const selectPosts = (state) => state.reddit.posts;
 const selectSearchTerm = (state) => state.reddit.searchTerm;

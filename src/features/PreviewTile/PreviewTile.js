@@ -7,7 +7,7 @@ export default function PreviewTile( { preview }) {
     const dispatch = useDispatch();
     
     const changeSubreddit = () => {
-        dispatch(setSelectedSubreddit(`/${preview.display_name_prefixed}`))
+        dispatch(setSelectedSubreddit(preview.display_name_prefixed))
     };
 
     return (

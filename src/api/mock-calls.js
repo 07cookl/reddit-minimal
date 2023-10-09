@@ -1,6 +1,6 @@
-export const API_ROOT = 'https://www.reddit.com';
+const API_ROOT = 'https://www.reddit.com';
 
-export const searchForPosts = async (subreddit) => {
+const searchForPosts = async (subreddit) => {
     const response = await fetch(`${API_ROOT}/${subreddit}.json`);
 
     const jsonResponse = await response.json();
@@ -9,7 +9,7 @@ export const searchForPosts = async (subreddit) => {
     return jsonResponse.data.children.map((post) => post.data);
 };
 
-export const searchPreview = async (term) => {
+const searchPreview = async (term) => {
     const response = await fetch(`${API_ROOT}/search.json?q=${term}&type=sr`);
     const jsonResponse = await response.json();
     console.log(jsonResponse.data.children);
@@ -17,7 +17,7 @@ export const searchPreview = async (term) => {
     return jsonResponse.data.children.map((post) => post.data);
 };
 
-export const subredditInfo = async (subreddit) => {
+const subredditInfo = async (subreddit) => {
     const response = await fetch(`${API_ROOT}/${subreddit}/about.json`);
 
     const jsonResponse = await response.json();
@@ -25,3 +25,5 @@ export const subredditInfo = async (subreddit) => {
 
     return jsonResponse.data;
 };
+
+subredditInfo('r/popular')
