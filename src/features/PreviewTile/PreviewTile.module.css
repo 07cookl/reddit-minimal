@@ -1,0 +1,32 @@
+.preview {
+    width: 200px;
+    height: 40px;
+    background-color: bisque;
+    display: flex;
+}
+
+.preview:hover {
+    background-color: burlywood;
+    cursor: pointer;
+}
+
+.previewImage {
+    height: 40px;
+    border-radius: 0.5;
+}
+
+.previewInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.previewTitle {
+    font-size: 10px;
+    margin: 0;
+}
+
+.previewSubscribers{
+    font-size: 8px;
+    margin: 0;
+}
