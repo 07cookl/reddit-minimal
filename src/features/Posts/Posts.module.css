@@ -23,6 +23,10 @@
     border: 1px solid black;
 }
 
+.link:hover {
+    cursor: pointer;
+}
+
 .postInfo ul {
     display: flex;
     list-style: none;

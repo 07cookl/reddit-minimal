@@ -4,7 +4,7 @@ import Posts from "./features/Posts/Posts";
 import { useEffect } from "react";
 import Header from "./features/Header/Header";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPosts, fetchSubredditData } from "./app/redditSlice";
+import { fetchPosts, fetchSubredditData, fetchComments } from "./app/redditSlice";
 import SubredditInfo from "./features/SubredditInfo/SubredditInfo";
 
 
@@ -31,6 +31,14 @@ function App() {
       )}
   }
 
+  const onToggleComments = (index) => {
+    const getComments = (permalink) => {
+      dispatch(fetchComments(index, permalink));
+    };
+
+    return getComments;
+  };
+
   return (
       <>
       <Header />
@@ -38,10 +46,12 @@ function App() {
         <div className={styles.homeContainer}>
           {subredditInfo()}
             <div className={styles.post}>
-                {posts.map((post) => (
+                {posts.map((post, index) => (
                 <Posts 
                     post={post}
-                    key={post.id}/>
+                    key={post.id}
+                    onToggleComments={onToggleComments(index)}
+                    />
                 ))}
             </div>
         </div>

@@ -4,9 +4,9 @@ const searchForPosts = async (subreddit) => {
     const response = await fetch(`${API_ROOT}/${subreddit}.json`);
 
     const jsonResponse = await response.json();
-    console.log(jsonResponse);
+    console.log(jsonResponse[1].data.children);
 
-    return jsonResponse.data.children.map((post) => post.data);
+    return jsonResponse;
 };
 
 const searchPreview = async (term) => {
@@ -26,4 +26,13 @@ const subredditInfo = async (subreddit) => {
     return jsonResponse.data;
 };
 
-subredditInfo('r/popular')
+const postComments = async (post) => {
+    const response = await fetch(`${API_ROOT}${post.permalink}.json`);
+
+    const jsonResponse = await response.json();
+    console.log(jsonResponse);
+
+    return jsonResponse[1].data.children.map((comment) => (comment.data));
+};
+
+searchForPosts('r/harrypotter/comments/16udnsu/harry_potter_and_gosford_park_actor_sir_michael/')

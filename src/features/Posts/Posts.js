@@ -1,10 +1,29 @@
 import React from "react";
 import styles from "./Posts.module.css";
-import Comments from "../Comments/Comments";
+import Comment from "../Comments/Comments";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useDispatch } from "react-redux";
+import { setSelectedSubreddit, toggleShowingComments } from "../../app/redditSlice";
 
 export default function Posts(props) {
+
+    const dispatch = useDispatch();
+    
+    const changeSubreddit = () => {
+        dispatch(setSelectedSubreddit(`r/${props.post.subreddit}`))
+    };
+
+    const shareLinks = {
+        twitter: `https://twitter.com/intent/tweet?url=${props.post.url}&text=${props.post.title}&via=`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${props.post.url}`,
+        whatsapp: `whatsapp://send?text=${props.post.url}`
+    }
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(props.post.url);
+        alert('Link copied!');
+    };
 
     const postContent = (post) => {
         let category = post.post_hint;
@@ -17,12 +36,24 @@ export default function Posts(props) {
                 return <img src={post.url} className={styles.postImage} alt={post.title}/>
             case 'hosted:video':
                 return (<video controls height="350">
-                    <source src={props.post.media.reddit_video.scrubber_media_url}/>
+                    <source src={post.media.reddit_video.scrubber_media_url}/>
                 </video>);
             case undefined:
                 return <a href={post.url}>Click for more</a>;
             default:
                 <p>Unable to load post.</p>;
+        }
+    }
+
+    const renderComments = () => {
+        if (props.post.showingComments) {
+            return (
+                <div>
+                    {props.post.comments.map((comment) => (
+                    <Comment comment={comment} key={comment.id} />
+                    ))}
+                </div>
+            );
         }
     }
 
@@ -33,7 +64,7 @@ export default function Posts(props) {
             <div className={styles.postInfo}>
                 <ul>
                     <li>
-                        <p>r/{props.post.subreddit}</p>
+                        <p className={styles.link} onClick={changeSubreddit}>r/{props.post.subreddit}</p>
                     </li>
                     <li>
                         <p>by {props.post.author}</p>
@@ -58,11 +89,18 @@ export default function Posts(props) {
                 </li>
                 <li>
                     <p>Share</p>
+                    <ul>
+                        <li><a href={shareLinks.facebook} target="_blank" rel="nofollow noreferrer">Share on Facebook</a></li>
+                        <li><a href={shareLinks.twitter} target="_blank" rel="nofollow noreferrer">Share on Twitter</a></li>
+                        <li><a href={shareLinks.whatsapp} target="_blank" rel="nofollow noreferrer">Share on Whatsapp</a></li>
+                        <li className={styles.link} onClick={handleCopy}>Copy Link</li>
+                    </ul>
                 </li>
             </ul>
         </div>
         <div className={styles.comments}>
-        <Comments />
+            <button onClick={props.onToggleComments(props.post.permalink)}>Toggle Comments</button>
+            {renderComments}
         </div>
     </div>
     )

@@ -1,24 +1,23 @@
 import React from 'react';
 import styles from './Comments.module.css';
 
-export default function Comments() {
+export default function Comments( { comment }) {
     return (
         <div className={styles.commentContainer}>
             <div className={styles.commentInfoContainer}>
                 <p className={styles.icon}>Icon</p>
                 <div className={styles.commentInfo}>
-                    <p>Name</p>
+                    <p>{comment.author}</p>
                     <p>Time uploaded</p>
                 </div>
             </div>
-            <p>Comment</p>
+            <p>{comment.body}</p>
             <div className={styles.social}>
                 <ul>
-                    <li>Votes</li>
-                    <li>Share</li>
+                    <li>Score: {Comments.score}</li>
                 </ul>
             </div>
-            <p>View replies...</p>
+            {/* <p onClick={toggleReplies}>View replies...</p> */}
         </div>
     )
 }

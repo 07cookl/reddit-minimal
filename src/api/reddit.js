@@ -25,3 +25,12 @@ export const subredditInfo = async (subreddit) => {
 
     return jsonResponse.data;
 };
+
+export const postComments = async (post) => {
+    const response = await fetch(`${API_ROOT}${post.permalink}.json`);
+
+    const jsonResponse = await response.json();
+    console.log(jsonResponse);
+
+    return jsonResponse[1].data.children.map((comment) => (comment.data));
+};
