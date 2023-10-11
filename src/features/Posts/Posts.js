@@ -4,10 +4,10 @@ import Comment from "../Comments/Comments";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useDispatch } from "react-redux";
-import { setSelectedSubreddit, toggleShowingComments } from "../../app/redditSlice";
+import { setSelectedSubreddit } from "../../app/redditSlice";
+import timeSince from "../../util/timeSince";
 
 export default function Posts(props) {
-
     const dispatch = useDispatch();
     
     const changeSubreddit = () => {
@@ -31,7 +31,12 @@ export default function Posts(props) {
             case 'self':
                 return <Markdown remarkPlugins={[remarkGfm]} className={styles.postText}>{post.selftext}</Markdown>;
             case 'link':
-                return <a href={post.url}>Click for more</a>;
+                return (
+                    <div className={styles.thumbnail}>
+                    <img src={post.thumbnail} />
+                    <a href={post.url}>{post.url}</a>
+                    </div>
+                );
             case 'image':
                 return <img src={post.url} className={styles.postImage} alt={post.title}/>
             case 'hosted:video':
@@ -39,19 +44,43 @@ export default function Posts(props) {
                     <source src={post.media.reddit_video.scrubber_media_url}/>
                 </video>);
             case undefined:
-                return <a href={post.url}>Click for more</a>;
+                if (post.thumbnail === 'self') {
+                    return <Markdown remarkPlugins={[remarkGfm]} className={styles.postText}>{post.selftext}</Markdown>;
+                };
+                if (!post.thumbnail) {
+                    return <a href={post.url}>Click for more</a>
+                } else if (post.thumbnail.includes('http')) {
+                    return <img src={post.thumbnail} alt="post thumbnail" />
+                } else {
+                    return;
+                }
             default:
                 <p>Unable to load post.</p>;
         }
     }
 
+    // let currentComments = 4;
+    
     const renderComments = () => {
+        if (props.post.errorComments) {
+            return (
+                <p>Unable to load comments.</p>
+            )
+        }
+
+        if (props.post.loadingComments) {
+            return (
+                <p>Loading comments...</p>
+            )
+        }
+
         if (props.post.showingComments) {
             return (
                 <div>
-                    {props.post.comments.map((comment) => (
+                    {props.post.comments.slice(0,10).map((comment) => (
                     <Comment comment={comment} key={comment.id} />
                     ))}
+                    {/* <button className={styles.showMoreBtn} onClick={() => currentComments += 4}>Show more comments</button> */}
                 </div>
             );
         }
@@ -70,7 +99,7 @@ export default function Posts(props) {
                         <p>by {props.post.author}</p>
                     </li>
                     <li>
-                        <p>time uploaded</p>
+                        <p>uploaded {timeSince(Date.now() - props.post.created_utc * 1000)}</p>
                     </li>
                 </ul>
             </div>
@@ -99,8 +128,8 @@ export default function Posts(props) {
             </ul>
         </div>
         <div className={styles.comments}>
-            <button onClick={props.onToggleComments(props.post.permalink)}>Toggle Comments</button>
-            {renderComments}
+        {renderComments()}
+            <button onClick={() => props.onToggleComments(props.post.permalink)}>{props.post.showingComments ? 'Hide comments' : 'Show comments'}</button>
         </div>
     </div>
     )

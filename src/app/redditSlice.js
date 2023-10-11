@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { postComments, searchForPosts, searchPreview, subredditInfo } from '../api/reddit';
 
 const initialState = {
@@ -12,7 +12,8 @@ const initialState = {
     errorSubredditData: false,
     isLoadingSubredditData: false,
     searchTerm: '',
-    selectedSubreddit: 'r/popular'
+    selectedSubreddit: 'r/popular',
+    numVisibleComments: 4
 };
 
 const redditSlice = createSlice({
@@ -75,8 +76,7 @@ const redditSlice = createSlice({
             state.posts[action.payload].showingComments = !state.posts[action.payload].showingComments;
         },
         startGetComments(state, action) {
-            state.posts[action.payload].showingComments = !state.posts[action.payload]
-            .showingComments;
+            state.posts[action.payload].showingComments = !state.posts[action.payload].showingComments;
             if (!state.posts[action.payload].showingComments) {
             return;
             }
@@ -84,13 +84,13 @@ const redditSlice = createSlice({
             state.posts[action.payload].errorComments = false;
         },
         getCommentsSuccess(state, action) {
-            state.posts[action.payload].loadingComments = false;
-            state.posts[action.payload].comments = action.payload;
+            state.posts[action.payload.index].loadingComments = false;
+            state.posts[action.payload.index].comments = action.payload.commentData;
         },
         getCommentsFailed(state, action) {
             state.posts[action.payload].loadingComments = false;
             state.posts[action.payload].errorComments = true;
-        }
+        },
     }
 });
 
@@ -112,7 +112,7 @@ export const {
     toggleShowingComments,
     startGetComments,
     getCommentsSuccess,
-    getCommentsFailed
+    getCommentsFailed,
 } = redditSlice.actions;
 
 export default redditSlice.reducer;
@@ -128,6 +128,7 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
             comments: [],
             loadingComments: false,
             errorComments: false,
+            visibleComments: [],
         }));
 
         dispatch(getPostsSuccess(postsWithMetadata));
@@ -162,12 +163,11 @@ export const fetchComments = (index, permalink) => async (dispatch) => {
     try {
         dispatch(startGetComments(index));
         const commentData = await postComments(permalink);
-
-        dispatch(getCommentsSuccess({index, commentData}));
+        // console.log(commentData);
+        dispatch(getCommentsSuccess({ index, commentData }));
     } catch (error) {
         dispatch(getCommentsFailed(index));
     };
 };
 
 export const selectPosts = (state) => state.reddit.posts;
-const selectSearchTerm = (state) => state.reddit.searchTerm;

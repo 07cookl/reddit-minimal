@@ -4,6 +4,7 @@
     flex-direction: column;
     width: 90vw;
     background-color: aquamarine;
+    margin-bottom: 20px;
 }
 
 .postInfoContainer {
@@ -65,6 +66,12 @@
 
 .social {
     border: 1px solid black;
+}
+
+.thumbnail {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .social ul {

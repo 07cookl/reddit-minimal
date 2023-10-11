@@ -23,6 +23,11 @@
     margin-right: 20px;
 }
 
+.commentBody {
+    max-height: 8ch;
+    overflow-y: scroll;
+}
+
 .social {
     border: 1px solid black;
 }

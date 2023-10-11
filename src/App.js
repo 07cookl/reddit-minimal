@@ -10,7 +10,7 @@ import SubredditInfo from "./features/SubredditInfo/SubredditInfo";
 
 function App() {
   const reddit = useSelector((state) => state.reddit);
-  const { selectedSubreddit, posts, subredditData } = reddit;
+  const { selectedSubreddit, posts, subredditData, isLoading, error } = reddit;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function App() {
     if(subredditData !== undefined) {
       return (
       <div className={styles.subredditInfo}>
-        <img src={subredditData.icon_img} />
+        <img src={subredditData.icon_img} alt="subreddit icon"/>
         <h2>{subredditData.display_name_prefixed}</h2>
       </div>
       )}
@@ -39,6 +39,18 @@ function App() {
     return getComments;
   };
 
+if (isLoading) {
+  return (
+    <p>Loading content...</p>
+  )
+}
+
+if (error) {
+  return (
+    <p>Unable to load content.</p>
+  )
+}
+
   return (
       <>
       <Header />
@@ -51,6 +63,7 @@ function App() {
                     post={post}
                     key={post.id}
                     onToggleComments={onToggleComments(index)}
+                    index={index}
                     />
                 ))}
             </div>

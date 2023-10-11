@@ -4,7 +4,7 @@ const searchForPosts = async (subreddit) => {
     const response = await fetch(`${API_ROOT}/${subreddit}.json`);
 
     const jsonResponse = await response.json();
-    console.log(jsonResponse[1].data.children);
+    console.log(jsonResponse.data.children);
 
     return jsonResponse;
 };
@@ -34,5 +34,3 @@ const postComments = async (post) => {
 
     return jsonResponse[1].data.children.map((comment) => (comment.data));
 };
-
-searchForPosts('r/harrypotter/comments/16udnsu/harry_potter_and_gosford_park_actor_sir_michael/')
