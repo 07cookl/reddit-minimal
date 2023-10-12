@@ -6,6 +6,8 @@ import remarkGfm from "remark-gfm";
 import { useDispatch } from "react-redux";
 import { setSelectedSubreddit } from "../../app/redditSlice";
 import timeSince from "../../util/timeSince";
+import unEscape from "../../util/unEscape";
+import randomAvatar from "../../util/randomAvatar";
 
 export default function Posts(props) {
     const dispatch = useDispatch();
@@ -29,11 +31,11 @@ export default function Posts(props) {
         let category = post.post_hint;
         switch (category) {
             case 'self':
-                return <Markdown remarkPlugins={[remarkGfm]} className={styles.postText}>{post.selftext}</Markdown>;
+                return <Markdown remarkPlugins={[remarkGfm]} className={styles.postText}>{unEscape(post.selftext)}</Markdown>;
             case 'link':
                 return (
                     <div className={styles.thumbnail}>
-                    <img src={post.thumbnail} />
+                    <img src={post.thumbnail} alt="post thumbnail" />
                     <a href={post.url}>{post.url}</a>
                     </div>
                 );
@@ -45,7 +47,7 @@ export default function Posts(props) {
                 </video>);
             case undefined:
                 if (post.thumbnail === 'self') {
-                    return <Markdown remarkPlugins={[remarkGfm]} className={styles.postText}>{post.selftext}</Markdown>;
+                    return <Markdown remarkPlugins={[remarkGfm]} className={styles.postText}>{unEscape(post.selftext)}</Markdown>;
                 };
                 if (!post.thumbnail) {
                     return <a href={post.url}>Click for more</a>
@@ -57,6 +59,10 @@ export default function Posts(props) {
             default:
                 <p>Unable to load post.</p>;
         }
+    }
+
+    const avatar = () => {
+        return randomAvatar[props.index % 10];
     }
 
     // let currentComments = 4;
@@ -74,11 +80,13 @@ export default function Posts(props) {
             )
         }
 
+        const comments = props.post.comments.slice(0,10).filter((comment) => !comment.body.includes('![gif]'));
+
         if (props.post.showingComments) {
             return (
                 <div>
-                    {props.post.comments.slice(0,10).map((comment) => (
-                    <Comment comment={comment} key={comment.id} />
+                    {comments.slice(0,10).map((comment) => (
+                    <Comment comment={comment} key={comment.id} avatar={avatar()}/>
                     ))}
                     {/* <button className={styles.showMoreBtn} onClick={() => currentComments += 4}>Show more comments</button> */}
                 </div>
@@ -89,7 +97,7 @@ export default function Posts(props) {
     return (
     <div className={styles.postContainer}>
         <div className={styles.postInfoContainer}>
-            <p className={styles.icon}>Icon</p>
+            <img className={styles.icon} src={avatar()} alt="avatar for post"/>
             <div className={styles.postInfo}>
                 <ul>
                     <li>
@@ -104,7 +112,7 @@ export default function Posts(props) {
                 </ul>
             </div>
         </div>
-        <h2>{props.post.title}</h2>
+        <a className={styles.postTitle} href={props.post.url}>{props.post.title}</a>
         <div className={styles.content}>
             {postContent(props.post)}
         </div>

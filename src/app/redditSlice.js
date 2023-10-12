@@ -128,7 +128,6 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
             comments: [],
             loadingComments: false,
             errorComments: false,
-            visibleComments: [],
         }));
 
         dispatch(getPostsSuccess(postsWithMetadata));

@@ -14,3 +14,7 @@
     background-color: aqua;
     border: 1px solid black;
 }
+
+.logo p:hover {
+    cursor: pointer;
+}

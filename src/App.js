@@ -6,6 +6,7 @@ import Header from "./features/Header/Header";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts, fetchSubredditData, fetchComments } from "./app/redditSlice";
 import SubredditInfo from "./features/SubredditInfo/SubredditInfo";
+import Footer from "./features/Footer/Footer";
 
 
 function App() {
@@ -72,6 +73,7 @@ if (error) {
           <SubredditInfo />
         </aside>
       </div>
+      <Footer />
       </>
   )
 }

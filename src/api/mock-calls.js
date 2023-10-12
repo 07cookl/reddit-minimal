@@ -30,7 +30,8 @@ const postComments = async (post) => {
     const response = await fetch(`${API_ROOT}${post.permalink}.json`);
 
     const jsonResponse = await response.json();
-    console.log(jsonResponse);
+    console.log(jsonResponse.data.children);
 
     return jsonResponse[1].data.children.map((comment) => (comment.data));
 };
+
