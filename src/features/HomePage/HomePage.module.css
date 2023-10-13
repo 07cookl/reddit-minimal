@@ -1,8 +1,0 @@
-.homeContainer {
-    display: flex;
-    flex-direction: column;
-}
-
-.post {
-    align-self: center;
-}

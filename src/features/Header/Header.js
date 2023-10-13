@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Header.module.css";
-import { SearchBar } from "../SearchBar/SearchBar";
 import { useDispatch } from "react-redux";
 import { setSelectedSubreddit } from "../../app/redditSlice";
+import { SearchBar } from "../SearchBar/SearchBar";
+import styles from "./Header.module.css";
 
 export default function Header() {
     const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function Header() {
     return (
         <div className={styles.bar}>
             <div className={styles.logo}>
-                <p onClick={changeSubreddit}>LOGO</p>
+                <p onClick={changeSubreddit}>Reddit <span>Minimal</span></p>
             </div>
             <SearchBar />
         </div>

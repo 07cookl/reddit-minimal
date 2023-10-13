@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./App.module.css";
-import Posts from "./features/Posts/Posts";
-import { useEffect } from "react";
-import Header from "./features/Header/Header";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchPosts, fetchSubredditData, fetchComments } from "./app/redditSlice";
-import SubredditInfo from "./features/SubredditInfo/SubredditInfo";
+import { fetchComments, fetchPosts, fetchSubredditData } from "./app/redditSlice";
 import Footer from "./features/Footer/Footer";
+import Header from "./features/Header/Header";
+import Posts from "./features/Posts/Posts";
+import SubredditInfo from "./features/SubredditInfo/SubredditInfo";
 
 
 function App() {
@@ -56,22 +55,22 @@ if (error) {
       <>
       <Header />
       <div className={styles.content}>
-        <div className={styles.homeContainer}>
-          {subredditInfo()}
-            <div className={styles.post}>
-                {posts.map((post, index) => (
-                <Posts 
-                    post={post}
-                    key={post.id}
-                    onToggleComments={onToggleComments(index)}
-                    index={index}
-                    />
-                ))}
-            </div>
-        </div>
-        <aside>
-          <SubredditInfo />
-        </aside>
+        {subredditInfo()}
+        <main>
+          <aside>
+            <SubredditInfo />
+          </aside>
+          <div className={styles.post}>
+              {posts.map((post, index) => (
+              <Posts 
+                  post={post}
+                  key={post.id}
+                  onToggleComments={onToggleComments(index)}
+                  index={index}
+                  />
+              ))}
+          </div>
+        </main>
       </div>
       <Footer />
       </>

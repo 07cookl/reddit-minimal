@@ -1,6 +1,12 @@
 .previews {
-    width: 200px;
+    position: absolute;
+    top: 3.14rem;
+    width: 17.6rem;
     height: 160px;
+    margin-left: 1.2rem;
     overflow-y: scroll;
 }
 
+.hide {
+    display:none;
+}

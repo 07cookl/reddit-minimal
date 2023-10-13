@@ -4,6 +4,7 @@ import { postComments, searchForPosts, searchPreview, subredditInfo } from '../a
 const initialState = {
     posts: [],
     previews: [],
+    showingPreviews: false,
     subredditData: {},
     error: false,
     isLoading: false,
@@ -91,6 +92,15 @@ const redditSlice = createSlice({
             state.posts[action.payload].loadingComments = false;
             state.posts[action.payload].errorComments = true;
         },
+        changeNumberOfComments(state, action) {
+            state.posts[action.payload.index].visibleComments = action.payload.currentComments;
+        },
+        showPreviews(state) {
+            state.showingPreviews = true;
+        },
+        hidePreviews(state) {
+            state.showingPreviews = false;
+        }
     }
 });
 
@@ -113,6 +123,9 @@ export const {
     startGetComments,
     getCommentsSuccess,
     getCommentsFailed,
+    changeNumberOfComments,
+    showPreviews,
+    hidePreviews
 } = redditSlice.actions;
 
 export default redditSlice.reducer;
@@ -128,6 +141,7 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
             comments: [],
             loadingComments: false,
             errorComments: false,
+            visibleComments: 4,
         }));
 
         dispatch(getPostsSuccess(postsWithMetadata));

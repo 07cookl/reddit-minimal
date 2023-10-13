@@ -1,8 +1,8 @@
 .preview {
-    width: 200px;
     height: 40px;
-    background-color: bisque;
+    background-color:cadetblue;
     display: flex;
+    padding: 5px 0;
 }
 
 .preview:hover {
