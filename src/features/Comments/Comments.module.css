@@ -1,45 +1,29 @@
 .commentContainer {
-    border: 1px solid black;
-    margin: 50px 0;
-    width: 81vw;
-    background-color: aqua;
+    border: 1px solid var(--border-colour);
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
 }
 
 .commentInfoContainer {
-    border: 1px solid black;
     display: flex;
+    align-items: center;
 }
 
 .icon {
-    border: 1px solid black;
-    height: 75px;
+    height: 2rem;
 }
 
 .commentInfo {
-    border: 1px solid black;
     display: flex;
 }
 
 .commentInfo p {
-    margin-right: 20px;
+    margin-left: 1rem;
 }
 
 .commentBody {
-    max-height: 8ch;
+    margin-top: 0;
+    max-height: 4rem;
     overflow-y: scroll;
-}
-
-.social {
-    border: 1px solid black;
-}
-
-.social ul {
-    border: 1px solid black;
-    display: flex;
-    list-style: none;
-}
-
-.social li {
-    border: 1px solid black;
-    margin-right: 20px;
 }

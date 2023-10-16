@@ -1,0 +1,48 @@
+.subredditInfo {
+    position: sticky;
+    display: flex;
+    top: 6.25rem;
+    max-width: 28rem;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    color: var(--icons);
+    border: 1px solid var(--border-colour);
+    border-radius: 0.25rem;
+    margin-right: 1rem;
+}
+
+.headerImage {
+    height: 2rem;
+}
+
+.displayName {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    text-decoration: none;
+    color: var(--icons);
+}
+
+.nameDescription {
+    display: flex;
+    height: 18rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    align-self: stretch;
+}
+
+.nameDescription h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.nameDescription p {
+    overflow-y: scroll;
+}
+
+.subscribers {
+    margin: 0;
+}

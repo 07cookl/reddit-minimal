@@ -10,13 +10,17 @@ export default function SubredditInfo() {
         return;
     };
 
+    const url = `https://www.reddit.com${subredditData.url}`;
+
     return (
         <div className={styles.subredditInfo}>
-            <img src={subredditData.header_img} alt="subreddit header" />
-            <h2>{subredditData.display_name_prefixed}</h2>
-            <h3>{subredditData.title}</h3>
-            <p>{subredditData.public_description}</p>
-            <p>{subredditData.subscribers} subscribers</p>
+            <img className={styles.headerImage} src={subredditData.header_img} alt="subreddit header" />
+            <a className={styles.displayName} href={url}>{subredditData.display_name_prefixed}</a>
+            <div className={styles.nameDescription}>
+                <h3>{subredditData.title}</h3>
+                <p>{subredditData.public_description}</p>
+            </div>
+            <p className={styles.subscribers}>{subredditData.subscribers} subscribers</p>
         </div>
     )
 }

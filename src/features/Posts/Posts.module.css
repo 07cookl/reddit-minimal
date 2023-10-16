@@ -1,21 +1,22 @@
 .postContainer {
     border-radius: 0.25rem;
-    padding: 1rem 1.5rem;
-    width: 56rem;
+    padding: 1rem 1.5rem 0;
+    gap: 1rem;
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #fff;
-    border: 1px solid #ffffff99;
-    box-shadow: 3px 3px #ffffff99;
+    color: var(--icons);
+    background-color: var(--card-colour);
+    border: 1px solid var(--border-colour);
+    box-shadow: 1px 1px var(--border-colour);
 }
 
 .postInfoContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    align-self: stretch;
 }
 
 .icon {
@@ -46,35 +47,41 @@
 .timeSince {
     font-weight: 400;
     font-size: 0.875rem;
-    color: #ffffff99;
+    color: var(--icons);
 }
 
 .postContent {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
     align-items: flex-start;
+    gap: 4rem;
+    align-self: stretch;
 }
 
 .textContent {
-    max-width: 100%;
-    min-width: 25rem;
-    min-height: 15rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
 }
 
 .titleContent {
     display: flex;
+    padding-bottom: 0px;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    align-self: stretch;
+    max-height: 10rem;
+    overflow-y: scroll;
 }
 
 .postTitle {
     font-size: 1.5rem;
     text-decoration: none;
     font-weight: 600;
-    color: #fff;
+    color: var(--icons);
     margin-bottom: 0.5rem;
 }
 
@@ -83,56 +90,60 @@
 }
 
 .pictureContent {
-    max-width: 19rem;
-    max-height: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    align-self: stretch;
+}
+
+.contentVideo {
+    width: 25rem;
+    max-height: 14rem;
+}
+
+.postImageContainer {
+    width: 25rem;
     display: flex;
     justify-content: center;
 }
 
-.contentVideo {
-    max-width: 100%;
-    height: 18rem;
-}
-
 .postImage {
-    max-width: 100%;
-    max-height: 100%;
+    max-height: 14rem !important;
 }
 
 .thumbnail {
     display: flex;
     flex-direction: column;
+    width: 25rem;
 }
 
 .thumbnail img {
-    width: 15rem;
-    max-height: 100%;
+    max-height: 14rem !important;
+}
+
+.thumbnail a {
+    color: var(--icons);
+    height: 1.5rem;
+    overflow: hidden;
 }
 
 .postText {
-    font-size: 1rem;
-    max-height: 10rem;
+    max-height: 8rem;
     overflow-y: scroll;
 }
 
 .social {
     display: flex;
-    width: 100%;
-    height: 2rem;
-    justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    align-self: stretch;
 }
 
 .scoreComments {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-}
-
-.score {
-    line-height: 1.5rem;
-    margin-right: 2rem;
-    margin: 0 2rem 0 0;
+    gap: 1rem;
 }
 
 .commentIcon {
@@ -147,7 +158,14 @@
 }
 
 .share {
-    justify-self: flex-end;
+    display: flex;
+    align-items: center;
+}
+
+.share img {
+    height: 1.5rem;
+    cursor: pointer;
+    margin-right: 0.5rem;
 }
 
 .hide {
@@ -155,5 +173,73 @@
 }
 
 .comments {
-    
+    display: flex;
+    flex-direction: column;
 }
+
+.commentsButtons {
+    display: flex;
+    /* margin: auto; */
+}
+
+.commentsButtons > div {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-20%);
+}
+
+.hideBtn {
+    height: 1.5rem;
+    margin-left: auto;
+    margin-bottom: 0.5rem;
+}
+.showMoreBtn, .showLessBtn {
+    height: 1.5rem;
+}
+
+.showLessBtn {
+    margin-left: 1.5rem;
+}
+
+:where(.hideBtn, .showMoreBtn, .showLessBtn):hover {
+    cursor: pointer;
+}
+
+svg {
+    width: 3.25em;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+    }
+    
+    circle {
+    fill: none;
+    stroke: var(--highlight);
+    stroke-width: 2;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes rotate4 {
+    100% {
+        transform: rotate(360deg);
+    }
+    }
+    
+    @keyframes dash4 {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+    
+    50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+    }
+    
+    100% {
+        stroke-dashoffset: -125px;
+    }
+    }
+    

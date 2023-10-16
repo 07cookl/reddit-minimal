@@ -17,7 +17,7 @@ export default function PreviewTile( { preview }) {
         <div className={styles.preview} onClick={changeSubreddit}>
             <img src={source} className={styles.previewImage}/>
             <div className={styles.previewInfo}>
-                <h3 className={styles.previewTitle}>{preview.display_name_prefixed}</h3>
+                <p className={styles.previewTitle}>{preview.display_name_prefixed}</p>
                 <p className={styles.previewSubscribers}>{preview.subscribers} subscribers</p>
             </div>
         </div>

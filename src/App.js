@@ -6,6 +6,7 @@ import Footer from "./features/Footer/Footer";
 import Header from "./features/Header/Header";
 import Posts from "./features/Posts/Posts";
 import SubredditInfo from "./features/SubredditInfo/SubredditInfo";
+import PostLoader from "./Loaders/PostLoader";
 
 
 function App() {
@@ -41,7 +42,9 @@ function App() {
 
 if (isLoading) {
   return (
-    <p>Loading content...</p>
+    <svg viewBox="25 25 50 50">
+        <circle r="20" cy="50" cx="50"></circle>
+    </svg>
   )
 }
 
@@ -55,7 +58,6 @@ if (error) {
       <>
       <Header />
       <div className={styles.content}>
-        {subredditInfo()}
         <main>
           <aside>
             <SubredditInfo />

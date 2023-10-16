@@ -1,8 +1,18 @@
+:root {
+  --dark-background: #53131E;
+  --card-colour: #7B6D8D;
+  /* --dark-background: #031926;
+  --card-colour: #577590; */
+  --border-colour: #DE6449;
+  --highlight: #F39B6D;
+  --icons: #D3D4ED;
+}
+
 .content {
-  background-color: rgb(25,25,50);
+  background-color: var(--dark-background);
   position: absolute;
   top: 4.25rem;
-  width: calc(100vw - 17px);
+  width: 100%;
 }
 
 .subredditInfo {
@@ -20,7 +30,68 @@ main {
   justify-content: center;
 }
 
-.post {
-  padding-left: 0.5rem;
-  max-width: 56rem;
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--highlight) #ffffff;
 }
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--highlight);
+    border-radius: 10px;
+    border: 4px solid transparent;
+    background-clip: content-box;
+}
+
+svg {
+  width: 3.25em;
+  transform-origin: center;
+  animation: rotate4 2s linear infinite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  }
+  
+  circle {
+  fill: none;
+  stroke: var(--dark-background);
+  stroke-width: 2;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash4 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes rotate4 {
+  100% {
+      transform: rotate(360deg);
+  }
+  }
+  
+  @keyframes dash4 {
+  0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+  }
+  
+  50% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -35px;
+  }
+  
+  100% {
+      stroke-dashoffset: -125px;
+  }
+  }
+  

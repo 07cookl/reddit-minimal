@@ -3,31 +3,32 @@
     position: fixed;
     z-index: 1;
     height: 4.25rem;
-    width: calc(100vw - 17px);
+    width: 100vw;
     padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: black;
+    background-color: var(--dark-background);
+    border-bottom: 1px solid var(--border-colour);
 }
 
 .logo {
     font-size: 2rem;
     min-width: 14rem;
-    color: lightgray
+    color: var(--icons);
 }
 
 .logo span {
-    color:darkblue;
+    color: var(--icons);
     text-shadow:
-        0 0 7px #fff,
-        0 0 10px #fff,
-        0 0 21px #fff,
-        0 0 42px darkblue,
-        0 0 82px darkblue,
-        0 0 92px darkblue,
-        0 0 102px darkblue,
-        0 0 151px darkblue
+        0 0 7px #ffffff80,
+        0 0 10px #ffffff80,
+        0 0 21px #ffffff80,
+        0 0 42px var(--icons),
+        0 0 82px var(--icons),
+        0 0 92px var(--icons),
+        0 0 102px var(--icons),
+        0 0 151px var(--icons)
 }
 
 .logo p:hover {

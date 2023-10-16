@@ -4,7 +4,6 @@ import timeSince from '../../util/timeSince';
 import unEscape from '../../util/unEscape';
 
 export default function Comments( { comment, avatar }) {
-    // const avatar = randomAvatar[Math.floor(Math.random()*10)];
 
     return (
         <div className={styles.commentContainer}>
@@ -16,11 +15,9 @@ export default function Comments( { comment, avatar }) {
                 </div>
             </div>
             <p className={styles.commentBody}>{unEscape(comment.body)}</p>
-            <div className={styles.social}>
-                <ul>
-                    <li>Score: {Comments.score ? Comments.score : 0}</li>
-                </ul>
-            </div>
+            {/* <div className={styles.social}>
+                <p>Score: {Comments.score ? Comments.score : 0}</p>
+            </div> */}
         </div>
     )
 }

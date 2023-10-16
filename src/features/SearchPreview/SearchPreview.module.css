@@ -2,9 +2,17 @@
     position: absolute;
     top: 3.14rem;
     width: 17.6rem;
-    height: 160px;
+    height: 10rem;
     margin-left: 1.2rem;
     overflow-y: scroll;
+    border-radius: 0.25rem;
+    border-top-left-radius: 0;
+    background-color: var(--dark-background);
+}
+
+.previews::-webkit-scrollbar-track {
+    background: var(--dark-background);
+    border-bottom-right-radius: 0.25rem;
 }
 
 .hide {
