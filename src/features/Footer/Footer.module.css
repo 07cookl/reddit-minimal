@@ -1,0 +1,9 @@
+.footer {
+    color: var(--icons);
+    font-size: 0.5rem;
+}
+
+.footer a {
+    color: var(--icons);
+    text-decoration: none;
+}

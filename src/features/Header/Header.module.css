@@ -34,3 +34,21 @@
 .logo p:hover {
     cursor: pointer;
 }
+
+@media only screen and (max-width: 600px) {
+    .bar {
+        flex-direction: column;
+        padding-top: 0;
+        height: initial;
+    }
+
+    .logo {
+        font-size: 1.75rem;
+        min-width: 13rem;
+        padding: 0.5rem 0;
+    }
+
+    .logo p {
+        margin: 0;
+    }
+}

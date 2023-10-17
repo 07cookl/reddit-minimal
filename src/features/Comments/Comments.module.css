@@ -1,8 +1,11 @@
 .commentContainer {
-    border: 1px solid var(--border-colour);
-    border-radius: 0.25rem;
-    margin-bottom: 1rem;
+    border-top: 1px solid #D3D4ED80;
     padding: 0 1rem;
+}
+
+.commentContainer:last-child {
+    border-bottom: 1px solid #D3D4ED80;
+    margin-bottom: 0.5rem;
 }
 
 .commentInfoContainer {
@@ -24,6 +27,27 @@
 
 .commentBody {
     margin-top: 0;
-    max-height: 4rem;
-    overflow-y: scroll;
+}
+
+@media only screen and (max-width: 600px) {
+    .commentInfoContainer {
+        margin: 0.5rem 0;
+    }
+    
+    .commentInfo {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .icon {
+        height: 2.5rem;
+    }
+
+    .commentInfo p {
+        margin: 0;
+    }
+
+    .timeSince {
+        font-size: 0.875rem;
+    }
 }

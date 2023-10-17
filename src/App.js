@@ -6,8 +6,6 @@ import Footer from "./features/Footer/Footer";
 import Header from "./features/Header/Header";
 import Posts from "./features/Posts/Posts";
 import SubredditInfo from "./features/SubredditInfo/SubredditInfo";
-import PostLoader from "./Loaders/PostLoader";
-
 
 function App() {
   const reddit = useSelector((state) => state.reddit);
@@ -73,8 +71,8 @@ if (error) {
               ))}
           </div>
         </main>
+        <Footer />
       </div>
-      <Footer />
       </>
   )
 }

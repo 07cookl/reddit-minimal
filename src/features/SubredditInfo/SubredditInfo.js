@@ -14,8 +14,10 @@ export default function SubredditInfo() {
 
     return (
         <div className={styles.subredditInfo}>
-            <img className={styles.headerImage} src={subredditData.header_img} alt="subreddit header" />
-            <a className={styles.displayName} href={url}>{subredditData.display_name_prefixed}</a>
+            <div className={styles.subredditHeader}>
+                <img className={styles.headerImage} src={subredditData.header_img} alt="subreddit header" />
+                <a className={styles.displayName} href={url}>{subredditData.display_name_prefixed}</a>
+            </div>
             <div className={styles.nameDescription}>
                 <h3>{subredditData.title}</h3>
                 <p>{subredditData.public_description}</p>

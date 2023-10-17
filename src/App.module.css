@@ -1,12 +1,42 @@
 :root {
-  --dark-background: #53131E;
-  --card-colour: #7B6D8D;
-  /* --dark-background: #031926;
-  --card-colour: #577590; */
-  --border-colour: #DE6449;
-  --highlight: #F39B6D;
+  --dark-background: #031926;
+  --card-colour: #577590;
+  --border-colour: #D3D4ED;
+  --highlight: #5D5D8F;
   --icons: #D3D4ED;
 }
+
+/* :root {
+  --dark-background: #001A23;
+  --card-colour: #31493C;
+  --border-colour: #7A9E7E;
+  --highlight: #B3EFB2;
+  --icons: #D3D4ED;
+} */
+
+/* :root {
+  --dark-background: #303036;
+  --card-colour: #603140;
+  --border-colour: #957964;
+  --highlight: #FFF9A5;
+  --icons: #D3D4ED;
+} */
+
+/* :root {
+  --dark-background: #020402;
+  --card-colour: #434A42;
+  --border-colour: #626C66;
+  --highlight: #918B76;
+  --icons: #D3D4ED;
+} */
+
+/* :root {
+  --dark-background: #46474F;
+  --card-colour: #6B6B78;
+  --border-colour: #B3B4C9;
+  --highlight: #8F90A1;
+  --icons: #D3D4ED;
+} */
 
 .content {
   background-color: var(--dark-background);
@@ -25,9 +55,28 @@
 
 main {
   padding: 2rem 7.5rem 0 7.5rem;
-  margin-right: 17px;
   display: flex;
   justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+  main {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 1rem 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    top: 102px;
+  }
+
+  main {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 1rem 0;
+  }
 }
 
 /* ===== Scrollbar CSS ===== */

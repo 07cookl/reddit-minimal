@@ -19,7 +19,6 @@ import timeSince from "../../util/timeSince";
 import unEscape from "../../util/unEscape";
 import Comment from "../Comments/Comments";
 import styles from "./Posts.module.css";
-import PostLoader from "../../Loaders/PostLoader";
 
 export default function Posts(props) {
     const reddit = useSelector((state) => state.reddit);
@@ -140,6 +139,11 @@ export default function Posts(props) {
 
     const socialsId = `shareLinks${props.index}`;
 
+    const toggleSocials = () => {
+        document.getElementById(socialsId).classList.toggle(`${styles.hide}`);
+        document.getElementById(socialsId).classList.toggle(`${styles.shareLinks}`);
+    }
+
     return (
     <div className={styles.postContainer}>
         <div className={styles.postInfoContainer}>
@@ -165,12 +169,12 @@ export default function Posts(props) {
                         </div>
                     </div>
                     <div className={styles.share}>
-                        <img src={shareIcon} onClick={() => document.getElementById(socialsId).classList.toggle(`${styles.hide}`)} />
+                        <img src={shareIcon} onClick={toggleSocials} alt="share icon" />
                         <div className={styles.hide} id={socialsId}>
-                            <a href={shareLinks.facebook} target="_blank" rel="nofollow noreferrer"><img src={facebookIcon}/></a>
-                            <a href={shareLinks.twitter} target="_blank" rel="nofollow noreferrer"><img src={twitterIcon}/></a>
-                            <a href={shareLinks.whatsapp} target="_blank" rel="nofollow noreferrer"><img src={whatsappIcon}/></a>
-                            <img src={copyIcon} onClick={handleCopy}/>
+                            <a href={shareLinks.facebook} target="_blank" rel="nofollow noreferrer"><img src={facebookIcon} alt="facebook icon"/></a>
+                            <a href={shareLinks.twitter} target="_blank" rel="nofollow noreferrer"><img src={twitterIcon} alt="twitter icon"/></a>
+                            <a href={shareLinks.whatsapp} target="_blank" rel="nofollow noreferrer"><img src={whatsappIcon} alt="whatsapp icon"/></a>
+                            <img src={copyIcon} onClick={handleCopy} alt="copy link"/>
                         </div>
                     </div>
                 </div>
@@ -183,10 +187,10 @@ export default function Posts(props) {
         {renderComments()}
             <div className={styles.commentsButtons}>
                 <div>
-                    {props.post.showingComments && props.post.visibleComments < props.post.comments.length ? <img className={styles.showMoreBtn} src={arrowUp} onClick={handleShowMore}/> : <></>}
-                    {props.post.showingComments && props.post.visibleComments > 4 ? <img className={styles.showLessBtn} src={arrowDown} onClick={handleShowLess}/> : <></>}
+                    {props.post.showingComments && props.post.visibleComments < props.post.comments.length ? <img className={styles.showMoreBtn} src={arrowUp} onClick={handleShowMore} alt="show more comments"/> : <></>}
+                    {props.post.showingComments && props.post.visibleComments > 4 ? <img className={styles.showLessBtn} src={arrowDown} onClick={handleShowLess} alt="show fewer comments"/> : <></>}
                 </div>
-                {props.post.showingComments && props.post.visibleComments < props.post.comments.length ? <img className={styles.hideBtn} src={closeIcon} onClick={() => props.onToggleComments(props.post.permalink)}/> : <></>}
+                {props.post.showingComments && props.post.visibleComments < props.post.comments.length ? <img className={styles.hideBtn} src={closeIcon} onClick={() => props.onToggleComments(props.post.permalink)} alt="close comments"/> : <></>}
             </div>
         </div>
     </div>

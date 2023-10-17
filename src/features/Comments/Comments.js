@@ -11,7 +11,7 @@ export default function Comments( { comment, avatar }) {
             <img className={styles.icon} src={avatar} alt="avatar for comment" />
                 <div className={styles.commentInfo}>
                     <p>{comment.author}</p>
-                    <p>uploaded {timeSince(Date.now() - comment.created_utc*1000)}</p>
+                    <p className={styles.timeSince}>uploaded {timeSince(Date.now() - comment.created_utc*1000)}</p>
                 </div>
             </div>
             <p className={styles.commentBody}>{unEscape(comment.body)}</p>

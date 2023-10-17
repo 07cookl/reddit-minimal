@@ -2,7 +2,6 @@
     position: sticky;
     display: flex;
     top: 6.25rem;
-    max-width: 28rem;
     padding: 1rem;
     flex-direction: column;
     align-items: flex-start;
@@ -11,6 +10,13 @@
     border: 1px solid var(--border-colour);
     border-radius: 0.25rem;
     margin-right: 1rem;
+}
+
+.subredditHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .headerImage {
@@ -45,4 +51,34 @@
 
 .subscribers {
     margin: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .subredditInfo {
+        max-width: initial;
+        margin-right: 0;
+    }
+
+    .subredditHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .headerImage {
+        height: 3rem;
+    }
+
+    .displayName {
+        font-size: 2rem;
+    }
+
+    .nameDescription {
+        height: 10rem;
+    }
+
+    .nameDescription h3 {
+        margin: 0;
+    }
 }
